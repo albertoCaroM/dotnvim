@@ -62,35 +62,38 @@ return require("packer").startup(function(use)
 
   use "windwp/nvim-projectconfig"
 
-  -- Completion
-  use({
-    "hrsh7th/nvim-cmp",
-    requires = {
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-git",
-      "hrsh7th/cmp-emoji",
-      "rcarriga/cmp-dap",
-      "saadparwaiz1/cmp_luasnip",
-      "onsails/lspkind-nvim",
-      "L3MON4D3/LuaSnip",
-      "windwp/nvim-autopairs",
-      -- For vsnip users.
-            "hrsh7th/cmp-vsnip",
-            "hrsh7th/vim-vsnip",
-      },
-  })
+	use ({
+		'VonHeikemen/lsp-zero.nvim',
+		requires = {
+			-- LSP Support
+			{'neovim/nvim-lspconfig'},
+			{'williamboman/mason.nvim'},
+			{'williamboman/mason-lspconfig.nvim'},
 
-  use "rafamadriz/friendly-snippets"
-  -- LSP
-  use({
-    "neovim/nvim-lspconfig",
-    "hrsh7th/cmp-nvim-lsp-signature-help",
-    "jose-elias-alvarez/null-ls.nvim",
-  })
+			-- Autocompletion
+			{'hrsh7th/nvim-cmp'},
+			{'hrsh7th/cmp-buffer'},
+			{'hrsh7th/cmp-path'},
+			{'saadparwaiz1/cmp_luasnip'},
+      {"hrsh7th/cmp-cmdline"},
+      {"hrsh7th/cmp-git"},
+      {"hrsh7th/cmp-emoji"},
+			{'hrsh7th/cmp-nvim-lsp'},
+			{'hrsh7th/cmp-nvim-lua'},
+
+			-- Snippets
+			{'L3MON4D3/LuaSnip'},
+			{'rafamadriz/friendly-snippets'},
+		}
+	})
+	use ({
+		'numToStr/Comment.nvim',
+		config = function()
+			require('Comment').setup()
+		end
+	})
+
+
 
   -- Installation of LSP/Debuggers/Other
   use({
